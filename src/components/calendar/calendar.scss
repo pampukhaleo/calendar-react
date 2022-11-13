@@ -62,7 +62,18 @@
 
   &__day-number {
     font-size: 22px;
+    margin-top: 5px;
   }
+}
+
+.today-circle {
+  background-color: blue;
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
 }
 
 .red-line {
