@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 
 import './modal.scss';
+import moment from 'moment';
 
 class Modal extends Component {
   state = {
     id: '',
     title: '',
-    date: '',
-    startTime: '',
-    endTime: '',
+    date: moment().format("YYYY-MM-DD"),
+    startTime: moment().format("HH:mm"),
+    endTime: moment().add(15, 'minutes').format("HH:mm"),
     description: '',
   };
 
@@ -49,12 +50,14 @@ class Modal extends Component {
                   name="date"
                   className="event-form__field"
                   onChange={this.handleChange}
+                  value={this.state.date}
                 />
                 <input
                   type="time"
                   name="startTime"
                   className="event-form__field"
                   onChange={this.handleChange}
+                  value={this.state.startTime}
                 />
                 <span>-</span>
                 <input
@@ -62,6 +65,7 @@ class Modal extends Component {
                   name="endTime"
                   className="event-form__field"
                   onChange={this.handleChange}
+                  value={this.state.endTime}
                 />
               </div>
               <textarea

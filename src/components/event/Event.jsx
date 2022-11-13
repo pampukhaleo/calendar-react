@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
 import './event.scss';
 
@@ -7,23 +7,6 @@ const Event = ({ height, marginTop, title, time, id, onDelete }) => {
     height,
     marginTop,
   };
-
-  // const ref = useRef(null);
-  //
-  // useEffect(() => {
-  //   const handleClick = event => {
-  //     console.log(event);
-  //   };
-  //
-  //   const element = ref.current;
-  //
-  //   element.addEventListener('click', handleClick);
-  //
-  //   // 👇️ remove the event listener when component unmounts
-  //   return () => {
-  //     element.removeEventListener('click', handleClick);
-  //   };
-  // }, []);
 
   return (
     <div style={eventStyle} className="event" data-id={id} onClick={onDelete}>

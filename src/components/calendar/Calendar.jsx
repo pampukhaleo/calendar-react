@@ -14,31 +14,29 @@ class Calendar extends Component {
   };
 
   onSubmit = eventData => {
-    const { id, title, description, startTime, endTime, date } = eventData
+    const { id, title, description, startTime, endTime, date } = eventData;
     const newEvent = {
       id,
       title,
       description,
       dateFrom: new Date(`${date}T${startTime}`),
       dateTo: new Date(`${date}T${endTime}`),
-    }
-    const updatedEvents = this.state.events
-      .slice()
-      .concat(newEvent)
+    };
+    const updatedEvents = this.state.events.slice().concat(newEvent);
     this.setState({
-      events: updatedEvents
-    })
-  }
+      events: updatedEvents,
+    });
+  };
 
   onDelete = e => {
     const updatedEvents = this.state.events
       .slice()
-      .filter(event => +e.target.dataset.id !== event.id)
+      .filter(event => +e.target.dataset.id !== event.id);
 
     this.setState({
-      events: updatedEvents
-    })
-  }
+      events: updatedEvents,
+    });
+  };
 
   render() {
     const { weekDates } = this.props;
@@ -49,10 +47,12 @@ class Calendar extends Component {
         <div className="calendar__body">
           <div className="calendar__week-container">
             <Sidebar />
-            <Week weekDates={weekDates} events={this.state.events} onDelete={this.onDelete}/>
+            <Week weekDates={weekDates} events={this.state.events} onDelete={this.onDelete} />
           </div>
         </div>
-        {this.props.isShown && <Modal onCloseButtonClick={this.props.handleCreateToggle} onSubmit={this.onSubmit}/>}
+        {this.props.isShown && (
+          <Modal onCloseButtonClick={this.props.handleCreateToggle} onSubmit={this.onSubmit} />
+        )}
       </section>
     );
   }
