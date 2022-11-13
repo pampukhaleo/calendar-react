@@ -8,6 +8,11 @@ import './common.scss';
 
 const App = () => {
   const [weekStartDate, setWeekStartDate] = useState(new Date());
+  const [isShown, setIsShown] = useState(false);
+
+  const handleCreateToggle = () => {
+    setIsShown(!isShown);
+  };
 
   const handleWeekRangeIncrease = () => {
     setWeekStartDate(date => {
@@ -35,8 +40,9 @@ const App = () => {
         onIncreaseBtnClick={handleWeekRangeIncrease}
         onDecreaseBtnClick={handleWeekRangeDecrease}
         onTodayButtonClick={handleTodayButton}
+        onCreateButtonClick={handleCreateToggle}
       />
-      <Calendar weekDates={weekDates} />
+      <Calendar weekDates={weekDates} handleCreateToggle={handleCreateToggle} isShown={isShown} />
     </>
   );
 };

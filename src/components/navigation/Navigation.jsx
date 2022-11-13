@@ -7,7 +7,9 @@ const Navigation = ({ weekDates }) => {
     <header className="calendar__header">
       {weekDates.map(dayDate => {
         const dayNumberClassName =
-          new Date().getDate() === dayDate.getDate()
+          new Date().getDate() === dayDate.getDate() &&
+          new Date().getMonth() === dayDate.getMonth() &&
+          new Date().getDay() === dayDate.getDay()
             ? `day-label__day-number today-circle`
             : 'day-label__day-number';
 

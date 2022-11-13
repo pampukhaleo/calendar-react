@@ -2,10 +2,15 @@ import React from 'react';
 
 import './header.scss';
 
-const Header = ({ onIncreaseBtnClick, onDecreaseBtnClick, onTodayButtonClick }) => {
+const Header = ({
+  onIncreaseBtnClick,
+  onDecreaseBtnClick,
+  onTodayButtonClick,
+  onCreateButtonClick,
+}) => {
   return (
     <header className="header">
-      <button className="button create-event-btn">
+      <button className="button create-event-btn" onClick={onCreateButtonClick}>
         <i className="fas fa-plus create-event-btn__icon"></i>
         Create
       </button>
