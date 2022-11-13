@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Header from './components/header/Header.jsx';
 import Calendar from './components/calendar/Calendar.jsx';
 
@@ -6,22 +6,39 @@ import { getWeekStartDate, generateWeekRange } from '../src/utils/dateUtils.js';
 
 import './common.scss';
 
-class App extends Component {
-  state = {
-    weekStartDate: new Date(),
+const App = () => {
+  const [weekStartDate, setWeekStartDate] = useState(new Date());
+
+  const handleWeekRangeIncrease = () => {
+    setWeekStartDate(date => {
+      date.setDate(date.getDate() + 7);
+      return new Date(date);
+    });
   };
 
-  render() {
-    const { weekStartDate } = this.state;
-    const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
+  const handleWeekRangeDecrease = () => {
+    setWeekStartDate(date => {
+      date.setDate(date.getDate() - 7);
+      return new Date(date);
+    });
+  };
 
-    return (
-      <>
-        <Header />
-        <Calendar weekDates={weekDates} />
-      </>
-    );
-  }
-}
+  const handleTodayButton = () => {
+    setWeekStartDate(new Date());
+  };
+
+  const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
+
+  return (
+    <>
+      <Header
+        onIncreaseBtnClick={handleWeekRangeIncrease}
+        onDecreaseBtnClick={handleWeekRangeDecrease}
+        onTodayButtonClick={handleTodayButton}
+      />
+      <Calendar weekDates={weekDates} />
+    </>
+  );
+};
 
 export default App;
