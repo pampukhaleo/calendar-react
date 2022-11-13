@@ -30,8 +30,14 @@ class Calendar extends Component {
     })
   }
 
-  onDelete = event => {
-    console.log(event.target);
+  onDelete = e => {
+    const updatedEvents = this.state.events
+      .slice()
+      .filter(event => +e.target.dataset.id !== event.id)
+
+    this.setState({
+      events: updatedEvents
+    })
   }
 
   render() {

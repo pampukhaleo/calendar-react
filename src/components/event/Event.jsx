@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 import './event.scss';
 
-const Event = ({ height, marginTop, title, time, onDelete }) => {
+const Event = ({ height, marginTop, title, time, id, onDelete }) => {
   const eventStyle = {
     height,
     marginTop,
@@ -26,7 +26,7 @@ const Event = ({ height, marginTop, title, time, onDelete }) => {
   // }, []);
 
   return (
-    <div style={eventStyle} className="event" ref={ref}>
+    <div style={eventStyle} className="event" data-id={id} onClick={onDelete}>
       <div className="event__title">{title}</div>
       <div className="event__time">{time}</div>
     </div>
