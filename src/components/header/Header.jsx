@@ -21,7 +21,7 @@ const Header = ({
         Today
       </button>
       <button className="icon-button navigation__nav-icon" onClick={onDecreaseBtnClick}>
-        <i className="fas fa-chevron-left"></i>
+        <i className="fas fa-chevron-left "></i>
       </button>
       <button className="icon-button navigation__nav-icon" onClick={onIncreaseBtnClick}>
         <i className="fas fa-chevron-right"></i>

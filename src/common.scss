@@ -1,11 +1,13 @@
 .button {
   height: 40px;
   border-radius: 8px;
+  background-color: white;
   border: 1px solid #ccc;
   outline: none;
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
+  transition: all 500ms ease;
 }
 
 .icon-button {
@@ -13,20 +15,6 @@
   border: none;
   cursor: pointer;
   background: transparent;
-}
-
-.modal {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  &__content {
-    background: #fff;
-    padding: 16px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-  }
 }
 
 .overlay {
