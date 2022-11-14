@@ -3,6 +3,7 @@ import Hour from '../hour/Hour';
 
 import './day.scss';
 import RedLine from '../redLine/RedLine';
+import moment from 'moment';
 
 const Day = ({ dataDay, dayEvents, onDelete }) => {
   const hours = Array(24)
@@ -13,7 +14,10 @@ const Day = ({ dataDay, dayEvents, onDelete }) => {
     <div className="calendar__day" data-day={dataDay}>
       {hours.map(hour => {
         //getting all events from the day we will render
-        const hourEvents = dayEvents.filter(event => event.dateFrom.getHours() === hour);
+        const hourEvents = dayEvents.filter(event => {
+          const convertHours = moment(event.dateFrom).format('HH')
+          return +convertHours === hour
+        });
 
         return (
           <>

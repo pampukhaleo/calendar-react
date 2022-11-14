@@ -4,13 +4,26 @@ import Navigation from './../navigation/Navigation';
 import Week from '../week/Week';
 import Sidebar from '../sidebar/Sidebar';
 import Modal from '../modal/Modal';
-import events from '../../gateway/events';
+import events, { createEvents, fetchEvents } from '../../gateway/events';
 
 import './calendar.scss';
+import moment from 'moment';
 
 class Calendar extends Component {
   state = {
-    events,
+    events: []
+  };
+
+  componentDidMount() {
+    this.onFetchEvents();
+  }
+
+  onFetchEvents = () => {
+    fetchEvents().then(result =>
+      this.setState({
+        events: result,
+      }),
+    );
   };
 
   onSubmit = eventData => {
@@ -19,13 +32,11 @@ class Calendar extends Component {
       id,
       title,
       description,
-      dateFrom: new Date(`${date}T${startTime}`),
-      dateTo: new Date(`${date}T${endTime}`),
+      dateFrom: moment(`${date} ${startTime}`).format(),
+      dateTo: moment(`${date} ${endTime}`).format(),
     };
-    const updatedEvents = this.state.events.slice().concat(newEvent);
-    this.setState({
-      events: updatedEvents,
-    });
+    createEvents(newEvent)
+      .then(() => this.onFetchEvents());
   };
 
   onDelete = e => {
@@ -40,7 +51,7 @@ class Calendar extends Component {
 
   render() {
     const { weekDates } = this.props;
-
+    console.log(this.state.events);
     return (
       <section className="calendar">
         <Navigation weekDates={weekDates} />

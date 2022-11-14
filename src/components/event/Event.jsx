@@ -8,6 +8,9 @@ const Event = ({ height, marginTop, title, time, id, onDelete }) => {
     marginTop,
   };
 
+  console.log('height', height);
+  console.log('margin', marginTop);
+
   return (
     <div style={eventStyle} className="event" data-id={id} onClick={onDelete}>
       <div className="event__title">{title}</div>
