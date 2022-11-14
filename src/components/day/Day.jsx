@@ -2,15 +2,12 @@ import React from 'react';
 import Hour from '../hour/Hour';
 
 import './day.scss';
+import RedLine from '../redLine/RedLine';
 
 const Day = ({ dataDay, dayEvents, onDelete }) => {
   const hours = Array(24)
     .fill()
     .map((val, index) => index);
-
-  const currentHour = new Date().getHours();
-  const currentDate = new Date().getDate();
-  const currentMinutes = new Date().getMinutes()
 
   return (
     <div className="calendar__day" data-day={dataDay}>
@@ -20,10 +17,7 @@ const Day = ({ dataDay, dayEvents, onDelete }) => {
 
         return (
           <>
-            {currentHour === hour && currentDate === dataDay
-              ? (<div style={{ marginTop: currentMinutes }} className="red-line"></div>)
-              : null
-            }
+            <RedLine hour={hour} date={dataDay} />
             <Hour
               key={dataDay + hour}
               dataDay={dataDay}

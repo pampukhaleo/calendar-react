@@ -41,6 +41,7 @@ const App = () => {
         onDecreaseBtnClick={handleWeekRangeDecrease}
         onTodayButtonClick={handleTodayButton}
         onCreateButtonClick={handleCreateToggle}
+        weekStartDate={weekStartDate}
       />
       <Calendar weekDates={weekDates} handleCreateToggle={handleCreateToggle} isShown={isShown} />
     </>

@@ -1,12 +1,14 @@
 import React from 'react';
 
 import './header.scss';
+import { GetDisplayedMonth } from '../../utils/dateUtils';
 
 const Header = ({
   onIncreaseBtnClick,
   onDecreaseBtnClick,
   onTodayButtonClick,
   onCreateButtonClick,
+  weekStartDate,
 }) => {
   return (
     <header className="header">
@@ -24,7 +26,9 @@ const Header = ({
         <button className="icon-button navigation__nav-icon" onClick={onIncreaseBtnClick}>
           <i className="fas fa-chevron-right"></i>
         </button>
-        <span className="navigation__displayed-month"></span>
+        <span className="navigation__displayed-month">
+          <GetDisplayedMonth date={weekStartDate} />
+        </span>
       </div>
     </header>
   );
