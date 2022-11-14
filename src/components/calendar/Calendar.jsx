@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
-import Navigation from './../navigation/Navigation';
+import Navigation from '../navigation/Navigation';
 import Week from '../week/Week';
 import Sidebar from '../sidebar/Sidebar';
 import Modal from '../modal/Modal';
-import events, { createEvents, fetchEvents } from '../../gateway/events';
+import { createEvents, deleteEvent, fetchEvents } from '../../gateway/events';
 
 import './calendar.scss';
-import moment from 'moment';
 
 class Calendar extends Component {
   state = {
-    events: []
+    events: [],
   };
 
   componentDidMount() {
@@ -35,23 +35,15 @@ class Calendar extends Component {
       dateFrom: moment(`${date} ${startTime}`).format(),
       dateTo: moment(`${date} ${endTime}`).format(),
     };
-    createEvents(newEvent)
-      .then(() => this.onFetchEvents());
+    createEvents(newEvent).then(() => this.onFetchEvents());
   };
 
   onDelete = e => {
-    const updatedEvents = this.state.events
-      .slice()
-      .filter(event => +e.target.dataset.id !== event.id);
-
-    this.setState({
-      events: updatedEvents,
-    });
+    deleteEvent(e.target.dataset.id).then(() => this.onFetchEvents());
   };
 
   render() {
     const { weekDates } = this.props;
-    console.log(this.state.events);
     return (
       <section className="calendar">
         <Navigation weekDates={weekDates} />

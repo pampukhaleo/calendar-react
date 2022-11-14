@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 import './modal.scss';
-import moment from 'moment';
 
 class Modal extends Component {
   state = {
     id: Math.random(),
     title: '',
-    date: moment().format("YYYY-MM-DD"),
-    startTime: moment().format("HH:mm"),
-    endTime: moment().add(15, 'minutes').format("HH:mm"),
+    date: moment().format('YYYY-MM-DD'),
+    startTime: moment().format('HH:mm'),
+    endTime: moment().add(15, 'minutes').format('HH:mm'),
     description: '',
   };
 
@@ -25,7 +25,7 @@ class Modal extends Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.onSubmit(this.state);
-    this.props.onCloseButtonClick()
+    this.props.onCloseButtonClick();
   };
 
   render() {

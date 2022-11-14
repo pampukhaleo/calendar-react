@@ -1,9 +1,10 @@
 import React from 'react';
-import Hour from '../hour/Hour';
+import moment from 'moment';
 
 import './day.scss';
+
+import Hour from '../hour/Hour';
 import RedLine from '../redLine/RedLine';
-import moment from 'moment';
 
 const Day = ({ dataDay, dayEvents, onDelete }) => {
   const hours = Array(24)
@@ -13,23 +14,17 @@ const Day = ({ dataDay, dayEvents, onDelete }) => {
   return (
     <div className="calendar__day" data-day={dataDay}>
       {hours.map(hour => {
-        //getting all events from the day we will render
+        // getting all events from the day we will render
         const hourEvents = dayEvents.filter(event => {
-          const convertHours = moment(event.dateFrom).format('HH')
-          return +convertHours === hour
+          const convertHours = moment(event.dateFrom).format('H');
+          return +convertHours === hour;
         });
 
         return (
-          <>
+          <div key={dataDay + hour}>
             <RedLine hour={hour} date={dataDay} />
-            <Hour
-              key={dataDay + hour}
-              dataDay={dataDay}
-              dataHour={hour}
-              hourEvents={hourEvents}
-              onDelete={onDelete}
-            />
-          </>
+            <Hour dataHour={hour} hourEvents={hourEvents} onDelete={onDelete} />
+          </div>
         );
       })}
     </div>

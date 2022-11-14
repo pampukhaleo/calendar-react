@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import Header from './components/header/Header.jsx';
 import Calendar from './components/calendar/Calendar.jsx';
 
-import { getWeekStartDate, generateWeekRange } from '../src/utils/dateUtils.js';
+import { getWeekStartDate, generateWeekRange } from './utils/dateUtils.js';
 
 import './common.scss';
-import moment from 'moment';
 
 const App = () => {
   const [weekStartDate, setWeekStartDate] = useState(new Date());
