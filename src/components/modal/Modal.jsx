@@ -5,7 +5,7 @@ import moment from 'moment';
 
 class Modal extends Component {
   state = {
-    id: '',
+    id: Math.random(),
     title: '',
     date: moment().format("YYYY-MM-DD"),
     startTime: moment().format("HH:mm"),

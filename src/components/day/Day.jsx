@@ -8,16 +8,30 @@ const Day = ({ dataDay, dayEvents, onDelete }) => {
     .fill()
     .map((val, index) => index);
 
+  const currentHour = new Date().getHours();
+  const currentDate = new Date().getDate();
+  const currentMinutes = new Date().getMinutes()
+
   return (
     <div className="calendar__day" data-day={dataDay}>
-      {hours.map((hour) => {
+      {hours.map(hour => {
         //getting all events from the day we will render
-        const hourEvents = dayEvents.filter(
-          (event) => event.dateFrom.getHours() === hour
-        );
+        const hourEvents = dayEvents.filter(event => event.dateFrom.getHours() === hour);
 
         return (
-          <Hour key={dataDay + hour} dataHour={hour} hourEvents={hourEvents} onDelete={onDelete} />
+          <>
+            {currentHour === hour && currentDate === dataDay
+              ? (<div style={{ marginTop: currentMinutes }} className="red-line"></div>)
+              : null
+            }
+            <Hour
+              key={dataDay + hour}
+              dataDay={dataDay}
+              dataHour={hour}
+              hourEvents={hourEvents}
+              onDelete={onDelete}
+            />
+          </>
         );
       })}
     </div>
