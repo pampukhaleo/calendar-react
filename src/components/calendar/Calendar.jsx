@@ -19,11 +19,15 @@ class Calendar extends Component {
   }
 
   onFetchEvents = () => {
-    fetchEvents().then(result =>
-      this.setState({
-        events: result,
-      }),
-    );
+    fetchEvents()
+      .then(result => {
+        this.setState({
+          events: result,
+        });
+      })
+      .catch(() => {
+        alert(`'Internal Server Error. Can't display events'`);
+      });
   };
 
   onSubmit = eventData => {
@@ -35,11 +39,21 @@ class Calendar extends Component {
       dateFrom: moment(`${date} ${startTime}`).format(),
       dateTo: moment(`${date} ${endTime}`).format(),
     };
-    createEvents(newEvent).then(() => this.onFetchEvents());
+    createEvents(newEvent)
+      .then(() => {
+        this.onFetchEvents();
+      })
+      .catch(() => {
+        alert(`'Internal Server Error. Can't submit events'`);
+      });
   };
 
   onDelete = e => {
-    deleteEvent(e.target.dataset.id).then(() => this.onFetchEvents());
+    deleteEvent(e.target.dataset.id)
+      .then(() => this.onFetchEvents())
+      .catch(() => {
+        alert(`'Internal Server Error. Can't delete events'`);
+      });
   };
 
   render() {

@@ -13,7 +13,7 @@ const Week = ({ weekDates, events, onDelete }) => (
       const convertEndDate = moment(dayEnd).format('YYYY-MM-DDTHH:mm:ssZ');
       // getting all events from the day we will render
       const dayEvents = events.filter(
-        event => event.dateFrom > convertStartDate && event.dateTo < convertEndDate
+        event => event.dateFrom > convertStartDate && event.dateTo < convertEndDate,
       );
 
       return (
