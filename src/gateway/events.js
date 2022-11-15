@@ -3,7 +3,7 @@ const baseUrl = `https://636fb347f2ed5cb047e33dbd.mockapi.io/api/events`;
 export const fetchEvents = () =>
   fetch(baseUrl).then(res => {
     if (!res.ok) {
-      throw new Error('Error on fetch')
+      throw new Error('Error on fetch');
     }
     return res.json();
   });
