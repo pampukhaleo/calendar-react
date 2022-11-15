@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './event.scss';
 
@@ -17,3 +18,11 @@ const Event = ({ height, marginTop, title, time, id, onDelete }) => {
 };
 
 export default Event;
+
+Event.propTypes = {
+  height: PropTypes.number.isRequired,
+  marginTop: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  onDelete: PropTypes.func.isRequired,
+};

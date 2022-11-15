@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { days } from '../../utils/dateUtils.js';
 
@@ -13,7 +14,7 @@ const Navigation = ({ weekDates }) => (
           : 'day-label__day-number';
 
       return (
-        <div className="calendar__day-label day-label">
+        <div className="calendar__day-label day-label" key={dayDate.getDate()}>
           <span className="day-label__day-name">{days[dayDate.getDay()]}</span>
           <span className={dayNumberClassName}>{dayDate.getDate()}</span>
         </div>
@@ -23,3 +24,7 @@ const Navigation = ({ weekDates }) => (
 );
 
 export default Navigation;
+
+Navigation.propTypes = {
+  weekDates: PropTypes.array.isRequired,
+};

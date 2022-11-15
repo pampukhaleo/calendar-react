@@ -1,4 +1,5 @@
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 export const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 export const months = [
@@ -52,4 +53,8 @@ export const GetDisplayedMonth = ({ date }) => {
   return isSameYear
     ? `${months[startMonth]} - ${months[endMonth]} ${startYear}`
     : `${months[startMonth]} ${startYear} - ${months[endMonth]} ${endYear}`;
+};
+
+GetDisplayedMonth.propTypes = {
+  date: PropTypes.instanceOf(Date).isRequired,
 };

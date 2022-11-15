@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+
 import Header from './components/header/Header.jsx';
 import Calendar from './components/calendar/Calendar.jsx';
-
 import { getWeekStartDate, generateWeekRange } from './utils/dateUtils.js';
 
 import './common.scss';

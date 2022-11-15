@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 import Event from '../event/Event';
 
@@ -27,3 +28,9 @@ const Hour = ({ dataHour, hourEvents, onDelete }) => (
 );
 
 export default Hour;
+
+Hour.propTypes = {
+  dataHour: PropTypes.number.isRequired,
+  hourEvents: PropTypes.array.isRequired,
+  onDelete: PropTypes.func.isRequired,
+};

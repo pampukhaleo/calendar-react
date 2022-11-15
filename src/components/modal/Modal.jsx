@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 import './modal.scss';
 
@@ -9,7 +10,7 @@ class Modal extends Component {
     title: '',
     date: moment().format('YYYY-MM-DD'),
     startTime: moment().format('HH:mm'),
-    endTime: moment().add(15, 'minutes').format('HH:mm'),
+    endTime: moment().add(1, 'hour').format('HH:mm'),
     description: '',
   };
 
@@ -86,3 +87,8 @@ class Modal extends Component {
 }
 
 export default Modal;
+
+Modal.propTypes = {
+  onCloseButtonClick: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};

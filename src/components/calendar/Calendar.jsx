@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 import Navigation from '../navigation/Navigation';
 import Week from '../week/Week';
@@ -76,3 +77,9 @@ class Calendar extends Component {
 }
 
 export default Calendar;
+
+Calendar.propTypes = {
+  weekDates: PropTypes.array.isRequired,
+  handleCreateToggle: PropTypes.func.isRequired,
+  isShown: PropTypes.bool.isRequired,
+};

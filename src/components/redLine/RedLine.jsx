@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 import './redline.scss';
 
@@ -21,3 +22,8 @@ const RedLine = ({ hour, date }) => {
 };
 
 export default RedLine;
+
+RedLine.propTypes = {
+  hour: PropTypes.number.isRequired,
+  date: PropTypes.string.isRequired,
+};

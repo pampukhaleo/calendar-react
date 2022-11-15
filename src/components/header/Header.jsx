@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './header.scss';
 
@@ -34,3 +35,11 @@ const Header = ({
 );
 
 export default Header;
+
+Header.propTypes = {
+  onIncreaseBtnClick: PropTypes.func.isRequired,
+  onDecreaseBtnClick: PropTypes.func.isRequired,
+  onTodayButtonClick: PropTypes.func.isRequired,
+  onCreateButtonClick: PropTypes.func.isRequired,
+  weekStartDate: PropTypes.instanceOf(Date).isRequired,
+};
