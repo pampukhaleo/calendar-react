@@ -23,13 +23,13 @@ class Modal extends Component {
     let formIsValid = true;
     // Date
     this.props.events.forEach(event => {
-      const eventDate = moment(event.dateFrom, 'YYYY-MM-DD').format('YYYY-MM-DD')
-      const eventStartTime = moment(event.dateFrom, 'HH:mm').utc().format('HH:mm');
-      const eventEndTime = moment(event.dateTo, 'HH:mm').utc().format('HH:mm');
+      const eventDate = moment(event.dateFrom, 'YYYY-MM-DD').format('YYYY-MM-DD');
+      const eventStartTime = new Date(event.dateFrom).getTime();
+      const eventEndTime = new Date(event.dateTo).getTime();
       if (
         eventDate === fields.date &&
-        eventStartTime <= fields.endTime &&
-        eventEndTime >= fields.startTime
+        eventStartTime <= new Date(`${fields.date} ${fields.endTime}`).getTime() &&
+        eventEndTime >= new Date(`${fields.date} ${fields.startTime}`).getTime()
       ) {
         formIsValid = false;
         errors = 'Event with that time range already exists';
