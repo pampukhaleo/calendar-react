@@ -63,15 +63,14 @@
   &__day-number {
     font-size: 22px;
     margin: 5px 0;
+    line-height: 40px;
   }
 }
 
 .today-circle {
+  width: 40px;
   background-color: blue;
   color: white;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
   text-align: center;
-  line-height: 40px;
 }

@@ -7,6 +7,7 @@ import Week from '../week/Week';
 import Sidebar from '../sidebar/Sidebar';
 import Modal from '../modal/Modal';
 import { createEvents, deleteEvent, fetchEvents } from '../../gateway/events';
+import Delete from '../delete/Delete';
 
 import './calendar.scss';
 
