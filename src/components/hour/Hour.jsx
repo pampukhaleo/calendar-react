@@ -8,8 +8,8 @@ const Hour = ({ dataHour, hourEvents, onDelete }) => (
   <div className="calendar__time-slot" data-time={dataHour + 1}>
     {/* if no events in the current hour nothing will render here */}
     {hourEvents.map(({ id, dateFrom, dateTo, title }) => {
-      const eventStart = `${moment(dateFrom).format('hh')}:${moment(dateFrom).format('mm')}`;
-      const eventEnd = `${moment(dateTo).format('hh')}:${moment(dateTo).format('mm')}`;
+      const eventStart = `${moment(dateFrom).format('HH')}:${moment(dateFrom).format('mm')}`;
+      const eventEnd = `${moment(dateTo).format('HH')}:${moment(dateTo).format('mm')}`;
 
       return (
         <Event

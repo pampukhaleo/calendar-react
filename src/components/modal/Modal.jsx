@@ -6,30 +6,61 @@ import './modal.scss';
 
 class Modal extends Component {
   state = {
-    id: Math.random(),
-    title: '',
-    date: moment().format('YYYY-MM-DD'),
-    startTime: moment().format('HH:mm'),
-    endTime: moment().add(1, 'hour').format('HH:mm'),
-    description: '',
-  };
-
-  handleChange = event => {
-    const { name, value } = event.target;
-
-    this.setState({
+    fields: {
       id: Math.random(),
-      [name]: value,
-    });
+      title: '',
+      date: moment().format('YYYY-MM-DD'),
+      startTime: moment().format('HH:mm'),
+      endTime: moment().add(60, 'minutes').format('HH:mm'),
+      description: '',
+    },
+    errors: '',
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
-    this.props.onSubmit(this.state);
-    this.props.onCloseButtonClick();
+  handleValidation() {
+    const { fields } = this.state;
+    let errors = '';
+    let formIsValid = true;
+    // Date
+    this.props.events.forEach(event => {
+      const eventDate = moment(event.dateFrom, 'YYYY-MM-DD').format('YYYY-MM-DD')
+      const eventStartTime = moment(event.dateFrom, 'HH:mm').utc().format('HH:mm');
+      const eventEndTime = moment(event.dateTo, 'HH:mm').utc().format('HH:mm');
+      if (
+        eventDate === fields.date &&
+        eventStartTime <= fields.endTime &&
+        eventEndTime >= fields.startTime
+      ) {
+        formIsValid = false;
+        errors = 'Event with that time range already exists';
+      }
+    });
+    this.setState({ errors });
+    return formIsValid;
+  }
+
+  handleChange = e => {
+    const { name, value } = e.target;
+    const { fields } = this.state;
+    fields[name] = value;
+
+    this.setState({ fields });
+    this.handleValidation()
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    if (this.handleValidation()) {
+      this.props.onSubmit(this.state.fields);
+      this.props.onCloseButtonClick();
+    } else {
+      alert(this.state.errors);
+    }
   };
 
   render() {
+    const { date, startTime, endTime } = this.state.fields;
     return (
       <div className="modal overlay">
         <div className="modal__content">
@@ -52,14 +83,14 @@ class Modal extends Component {
                   name="date"
                   className="event-form__field"
                   onChange={this.handleChange}
-                  value={this.state.date}
+                  value={date}
                 />
                 <input
                   type="time"
                   name="startTime"
                   className="event-form__field"
                   onChange={this.handleChange}
-                  value={this.state.startTime}
+                  value={startTime}
                 />
                 <span>-</span>
                 <input
@@ -67,7 +98,7 @@ class Modal extends Component {
                   name="endTime"
                   className="event-form__field"
                   onChange={this.handleChange}
-                  value={this.state.endTime}
+                  value={endTime}
                 />
               </div>
               <textarea
