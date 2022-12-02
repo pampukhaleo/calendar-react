@@ -8,27 +8,27 @@ import './common.scss';
 
 const App = () => {
   const [weekStartDate, setWeekStartDate] = useState(new Date());
-  const [isShown, setIsShown] = useState(false);
+  const [isEventModalShown, setIsEventModalShown] = useState(false);
 
-  const handleCreateToggle = () => {
-    setIsShown(!isShown);
+  const handleCreateEventModal = () => {
+    setIsEventModalShown(!isEventModalShown);
   };
 
-  const handleWeekRangeIncrease = () => {
+  const handleNextWeek = () => {
     setWeekStartDate(date => {
       date.setDate(date.getDate() + 7);
       return new Date(date);
     });
   };
 
-  const handleWeekRangeDecrease = () => {
+  const handlePrevWeek = () => {
     setWeekStartDate(date => {
       date.setDate(date.getDate() - 7);
       return new Date(date);
     });
   };
 
-  const handleTodayButton = () => {
+  const handleCurrentWeek = () => {
     setWeekStartDate(new Date());
   };
 
@@ -37,13 +37,17 @@ const App = () => {
   return (
     <>
       <Header
-        onIncreaseBtnClick={handleWeekRangeIncrease}
-        onDecreaseBtnClick={handleWeekRangeDecrease}
-        onTodayButtonClick={handleTodayButton}
-        onCreateButtonClick={handleCreateToggle}
+        onNextWeek={handleNextWeek}
+        onPrevWeek={handlePrevWeek}
+        onCurrentWeek={handleCurrentWeek}
+        onCreateButtonClick={handleCreateEventModal}
         weekStartDate={weekStartDate}
       />
-      <Calendar weekDates={weekDates} handleCreateToggle={handleCreateToggle} isShown={isShown} />
+      <Calendar
+        weekDates={weekDates}
+        onCloseButtonClick={handleCreateEventModal}
+        showCreateEventModal={isEventModalShown}
+      />
     </>
   );
 };

@@ -38,7 +38,7 @@ export const generateWeekRange = startDate => {
   return result;
 };
 
-export const GetDisplayedMonth = ({ date }) => {
+export const getDisplayedMonth = date => {
   const weekStart = getWeekStartDate(date);
   const weekEnd = moment(date).add(6, 'days').toDate();
   const startMonth = weekStart.getMonth();
@@ -53,8 +53,4 @@ export const GetDisplayedMonth = ({ date }) => {
   return isSameYear
     ? `${months[startMonth]} - ${months[endMonth]} ${startYear}`
     : `${months[startMonth]} ${startYear} - ${months[endMonth]} ${endYear}`;
-};
-
-GetDisplayedMonth.propTypes = {
-  date: PropTypes.instanceOf(Date).isRequired,
 };

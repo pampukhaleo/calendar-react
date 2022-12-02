@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './header.scss';
-
-import { GetDisplayedMonth } from '../../utils/dateUtils';
+import { getDisplayedMonth } from '../../utils/dateUtils';
 
 const Header = ({
-  onIncreaseBtnClick,
-  onDecreaseBtnClick,
-  onTodayButtonClick,
+  onNextWeek,
+  onPrevWeek,
+  onCurrentWeek,
   onCreateButtonClick,
   weekStartDate,
 }) => (
@@ -18,17 +17,17 @@ const Header = ({
       Create
     </button>
     <div className="navigation">
-      <button className="navigation__today-btn button" onClick={onTodayButtonClick}>
+      <button className="navigation__today-btn button" onClick={onCurrentWeek}>
         Today
       </button>
-      <button className="icon-button navigation__nav-icon" onClick={onDecreaseBtnClick}>
+      <button className="icon-button navigation__nav-icon" onClick={onPrevWeek}>
         <i className="fas fa-chevron-left "></i>
       </button>
-      <button className="icon-button navigation__nav-icon" onClick={onIncreaseBtnClick}>
+      <button className="icon-button navigation__nav-icon" onClick={onNextWeek}>
         <i className="fas fa-chevron-right"></i>
       </button>
       <span className="navigation__displayed-month">
-        <GetDisplayedMonth date={weekStartDate} />
+        {getDisplayedMonth(weekStartDate)}
       </span>
     </div>
   </header>
@@ -37,9 +36,9 @@ const Header = ({
 export default Header;
 
 Header.propTypes = {
-  onIncreaseBtnClick: PropTypes.func.isRequired,
-  onDecreaseBtnClick: PropTypes.func.isRequired,
-  onTodayButtonClick: PropTypes.func.isRequired,
+  onNextWeek: PropTypes.func.isRequired,
+  onPrevWeek: PropTypes.func.isRequired,
+  onCurrentWeek: PropTypes.func.isRequired,
   onCreateButtonClick: PropTypes.func.isRequired,
   weekStartDate: PropTypes.instanceOf(Date).isRequired,
 };

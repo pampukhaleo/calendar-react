@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
-import './modal.scss';
+import './createEventModal.scss';
 
-class Modal extends Component {
+class CreateEventModal extends Component {
   state = {
     fields: {
       id: Math.random(),
@@ -53,7 +53,7 @@ class Modal extends Component {
 
     if (this.handleValidation()) {
       this.props.onSubmit(this.state.fields);
-      this.props.onCloseButtonClick();
+      this.props.onClose();
     } else {
       alert(this.state.errors);
     }
@@ -65,7 +65,7 @@ class Modal extends Component {
       <div className="modal overlay">
         <div className="modal__content">
           <div className="create-event">
-            <button className="create-event__close-btn" onClick={this.props.onCloseButtonClick}>
+            <button className="create-event__close-btn" onClick={this.props.onClose}>
               +
             </button>
             <form className="event-form" onSubmit={this.handleSubmit}>
@@ -118,9 +118,9 @@ class Modal extends Component {
   }
 }
 
-export default Modal;
+export default CreateEventModal;
 
-Modal.propTypes = {
-  onCloseButtonClick: PropTypes.func.isRequired,
+CreateEventModal.propTypes = {
+  onClose: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };

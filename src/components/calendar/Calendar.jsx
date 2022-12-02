@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Navigation from '../navigation/Navigation';
 import Week from '../week/Week';
 import Sidebar from '../sidebar/Sidebar';
-import Modal from '../modal/Modal';
+import CreateEventModal from '../modal/CreateEventModal';
 import { createEvents, deleteEvent, fetchEvents } from '../../gateway/events';
 
 import './calendar.scss';
@@ -68,9 +68,9 @@ class Calendar extends Component {
             <Week weekDates={weekDates} events={this.state.events} onDelete={this.onDelete} />
           </div>
         </div>
-        {this.props.isShown && (
-          <Modal
-            onCloseButtonClick={this.props.handleCreateToggle}
+        {this.props.showCreateEventModal && (
+          <CreateEventModal
+            onClose={this.props.onCloseButtonClick}
             onSubmit={this.onSubmit}
             events={this.state.events}
           />
@@ -84,6 +84,6 @@ export default Calendar;
 
 Calendar.propTypes = {
   weekDates: PropTypes.array.isRequired,
-  handleCreateToggle: PropTypes.func.isRequired,
-  isShown: PropTypes.bool.isRequired,
+  onCloseButtonClick: PropTypes.func.isRequired,
+  showCreateEventModal: PropTypes.bool.isRequired,
 };
