@@ -54,3 +54,22 @@ export const getDisplayedMonth = date => {
     ? `${months[startMonth]} - ${months[endMonth]} ${startYear}`
     : `${months[startMonth]} ${startYear} - ${months[endMonth]} ${endYear}`;
 };
+
+export const handleValidation = (data, events) => {
+  const { fields } = data;
+  let formIsValid = true;
+  // Date
+  events.forEach(event => {
+    const eventDate = moment(event.dateFrom, 'YYYY-MM-DD').format('YYYY-MM-DD');
+    const eventStartTime = new Date(event.dateFrom).getTime();
+    const eventEndTime = new Date(event.dateTo).getTime();
+    if (
+      eventDate === fields.date &&
+      eventStartTime <= new Date(`${fields.date} ${fields.endTime}`).getTime() &&
+      eventEndTime >= new Date(`${fields.date} ${fields.startTime}`).getTime()
+    ) {
+      formIsValid = false;
+    }
+  });
+  return formIsValid;
+};

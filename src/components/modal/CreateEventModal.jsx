@@ -3,6 +3,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 
 import './createEventModal.scss';
+import { handleValidation } from "../../utils/dateUtils";
 
 class CreateEventModal extends Component {
   state = {
@@ -17,45 +18,23 @@ class CreateEventModal extends Component {
     errors: '',
   };
 
-  handleValidation() {
-    const { fields } = this.state;
-    let errors = '';
-    let formIsValid = true;
-    // Date
-    this.props.events.forEach(event => {
-      const eventDate = moment(event.dateFrom, 'YYYY-MM-DD').format('YYYY-MM-DD');
-      const eventStartTime = new Date(event.dateFrom).getTime();
-      const eventEndTime = new Date(event.dateTo).getTime();
-      if (
-        eventDate === fields.date &&
-        eventStartTime <= new Date(`${fields.date} ${fields.endTime}`).getTime() &&
-        eventEndTime >= new Date(`${fields.date} ${fields.startTime}`).getTime()
-      ) {
-        formIsValid = false;
-        errors = 'Event with that time range already exists';
-      }
-    });
-    this.setState({ errors });
-    return formIsValid;
-  }
-
   handleChange = e => {
     const { name, value } = e.target;
     const { fields } = this.state;
     fields[name] = value;
 
     this.setState({ fields });
-    this.handleValidation();
+    handleValidation(this.state, this.props.events);
   };
 
   handleSubmit = e => {
     e.preventDefault();
 
-    if (this.handleValidation()) {
+    if (handleValidation(this.state, this.props.events)) {
       this.props.onSubmit(this.state.fields);
       this.props.onClose();
     } else {
-      alert(this.state.errors);
+      alert('Event with that time range already exists');
     }
   };
 
