@@ -6,10 +6,10 @@ import './event.scss';
 import Delete from '../delete/Delete';
 
 const Event = ({ height, marginTop, title, time, id, onDelete }) => {
-  const [isDeleteShown, setIsDeleteShown] = useState(false);
+  const [isDeletePopupShown, setIsDeletePopupShown] = useState(false);
 
   const onEventClick = () => {
-    setIsDeleteShown(!isDeleteShown);
+    setIsDeletePopupShown(!isDeletePopupShown);
   };
 
   const eventStyle = {
@@ -21,7 +21,7 @@ const Event = ({ height, marginTop, title, time, id, onDelete }) => {
     <div style={eventStyle} className="event" onClick={onEventClick}>
       <div className="event__title">{title}</div>
       <div className="event__time">{time}</div>
-      {isDeleteShown && <Delete marginTop={marginTop} onDelete={onDelete} id={id} />}
+      {isDeletePopupShown && <Delete marginTop={marginTop} deletePopup={onDelete} id={id} />}
     </div>
   );
 };
