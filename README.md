@@ -1,4 +1,4 @@
-React calendar Project
+React Calendar Project
 
 [REACT Calendar](https://voluble-melba-48e2db.netlify.app/)
 
