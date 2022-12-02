@@ -45,7 +45,7 @@ class Modal extends Component {
     fields[name] = value;
 
     this.setState({ fields });
-    this.handleValidation()
+    this.handleValidation();
   };
 
   handleSubmit = e => {
