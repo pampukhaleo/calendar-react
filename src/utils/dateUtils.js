@@ -73,3 +73,14 @@ export const handleValidation = (data, events) => {
   });
   return formIsValid;
 };
+export const dayNumberClassName = date => {
+  const newDate = new Date();
+  if (
+    newDate.getDate() === date.getDate() &&
+    newDate.getMonth() === date.getMonth() &&
+    newDate.getDay() === date.getDay()
+  ) {
+    return `day-label__day-number today-circle`;
+  }
+  return 'day-label__day-number';
+};

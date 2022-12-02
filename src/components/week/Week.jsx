@@ -6,12 +6,14 @@ import './week.scss';
 
 import Day from '../day/Day';
 
+const formatYearMonthDayTime = 'YYYY-MM-DDTHH:mm:ssZ'
+
 const Week = ({ weekDates, events, onDelete }) => (
   <div className="calendar__week">
     {weekDates.map(dayStart => {
       const dayEnd = new Date(dayStart.getTime()).setHours(dayStart.getHours() + 24);
-      const convertStartDate = moment(dayStart).format('YYYY-MM-DDTHH:mm:ssZ');
-      const convertEndDate = moment(dayEnd).format('YYYY-MM-DDTHH:mm:ssZ');
+      const convertStartDate = moment(dayStart).format(formatYearMonthDayTime);
+      const convertEndDate = moment(dayEnd).format(formatYearMonthDayTime);
       // getting all events from the day we will render
       const dayEvents = events.filter(
         event => event.dateFrom > convertStartDate && event.dateTo < convertEndDate,

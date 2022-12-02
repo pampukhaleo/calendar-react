@@ -3,7 +3,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 
 import './createEventModal.scss';
-import { handleValidation } from "../../utils/dateUtils";
+import { handleValidation } from '../../utils/dateUtils';
 
 class CreateEventModal extends Component {
   state = {
