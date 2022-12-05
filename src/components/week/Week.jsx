@@ -6,7 +6,7 @@ import './week.scss';
 
 import Day from '../day/Day';
 
-const formatYearMonthDayTime = 'YYYY-MM-DDTHH:mm:ssZ'
+const formatYearMonthDayTime = 'YYYY-MM-DDTHH:mm:ssZ';
 
 const Week = ({ weekDates, events, onDelete }) => (
   <div className="calendar__week">

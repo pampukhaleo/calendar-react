@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import './createEventModal.scss';
 import { handleValidation } from '../../utils/dateUtils';
+import Modal from './Modal';
 
 class CreateEventModal extends Component {
   state = {
@@ -44,52 +45,54 @@ class CreateEventModal extends Component {
       <div className="modal overlay">
         <div className="modal__content">
           <div className="create-event">
-            <button className="create-event__close-btn" onClick={this.props.onClose}>
-              +
-            </button>
-            <form className="event-form" onSubmit={this.handleSubmit}>
-              <input
-                type="text"
-                name="title"
-                placeholder="Title"
-                className="event-form__field"
-                onChange={this.handleChange}
-                required
-              />
-              <div className="event-form__time">
-                <input
-                  type="date"
-                  name="date"
-                  className="event-form__field"
-                  onChange={this.handleChange}
-                  value={date}
-                />
-                <input
-                  type="time"
-                  name="startTime"
-                  className="event-form__field"
-                  onChange={this.handleChange}
-                  value={startTime}
-                />
-                <span>-</span>
-                <input
-                  type="time"
-                  name="endTime"
-                  className="event-form__field"
-                  onChange={this.handleChange}
-                  value={endTime}
-                />
-              </div>
-              <textarea
-                name="description"
-                placeholder="Description"
-                className="event-form__field"
-                onChange={this.handleChange}
-              ></textarea>
-              <button type="submit" className="event-form__submit-btn">
-                Create
+            <Modal>
+              <button className="create-event__close-btn" onClick={this.props.onClose}>
+                +
               </button>
-            </form>
+              <form className="event-form" onSubmit={this.handleSubmit}>
+                <input
+                  type="text"
+                  name="title"
+                  placeholder="Title"
+                  className="event-form__field"
+                  onChange={this.handleChange}
+                  required
+                />
+                <div className="event-form__time">
+                  <input
+                    type="date"
+                    name="date"
+                    className="event-form__field"
+                    onChange={this.handleChange}
+                    value={date}
+                  />
+                  <input
+                    type="time"
+                    name="startTime"
+                    className="event-form__field"
+                    onChange={this.handleChange}
+                    value={startTime}
+                  />
+                  <span>-</span>
+                  <input
+                    type="time"
+                    name="endTime"
+                    className="event-form__field"
+                    onChange={this.handleChange}
+                    value={endTime}
+                  />
+                </div>
+                <textarea
+                  name="description"
+                  placeholder="Description"
+                  className="event-form__field"
+                  onChange={this.handleChange}
+                ></textarea>
+                <button type="submit" className="event-form__submit-btn">
+                  Create
+                </button>
+              </form>
+            </Modal>
           </div>
         </div>
       </div>

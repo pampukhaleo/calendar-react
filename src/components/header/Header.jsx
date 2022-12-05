@@ -4,13 +4,7 @@ import PropTypes from 'prop-types';
 import './header.scss';
 import { getDisplayedMonth } from '../../utils/dateUtils';
 
-const Header = ({
-  onNextWeek,
-  onPrevWeek,
-  onCurrentWeek,
-  onCreateButtonClick,
-  weekStartDate,
-}) => (
+const Header = ({ onNextWeek, onPrevWeek, onCurrentWeek, onCreateButtonClick, weekStartDate }) => (
   <header className="header">
     <button className="button create-event-btn" onClick={onCreateButtonClick}>
       <i className="fas fa-plus create-event-btn__icon"></i>
@@ -26,9 +20,7 @@ const Header = ({
       <button className="icon-button navigation__nav-icon" onClick={onNextWeek}>
         <i className="fas fa-chevron-right"></i>
       </button>
-      <span className="navigation__displayed-month">
-        {getDisplayedMonth(weekStartDate)}
-      </span>
+      <span className="navigation__displayed-month">{getDisplayedMonth(weekStartDate)}</span>
     </div>
   </header>
 );
