@@ -31,24 +31,6 @@ class Calendar extends Component {
       });
   };
 
-  onSubmit = eventData => {
-    const { id, title, description, startTime, endTime, date } = eventData;
-    const newEvent = {
-      id,
-      title,
-      description,
-      dateFrom: moment(`${date} ${startTime}`).format(),
-      dateTo: moment(`${date} ${endTime}`).format(),
-    };
-    createEvents(newEvent)
-      .then(() => {
-        this.onFetchEvents();
-      })
-      .catch(() => {
-        alert(`'Internal Server Error. Can't submit events'`);
-      });
-  };
-
   onDelete = e => {
     deleteEvent(e.target.dataset.id)
       .then(() => this.onFetchEvents())
@@ -71,8 +53,8 @@ class Calendar extends Component {
         {this.props.showCreateEventModal && (
           <CreateEventModal
             onClose={this.props.onCloseButtonClick}
-            onSubmit={this.onSubmit}
             events={this.state.events}
+            fetchEvents={this.onFetchEvents}
           />
         )}
       </section>

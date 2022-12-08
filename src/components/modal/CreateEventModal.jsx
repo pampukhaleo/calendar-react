@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import './createEventModal.scss';
 import { handleValidation } from '../../utils/dateUtils';
 import Modal from './Modal';
+import { createEvents } from '../../gateway/events';
 
 class CreateEventModal extends Component {
   state = {
@@ -28,11 +29,29 @@ class CreateEventModal extends Component {
     handleValidation(this.state, this.props.events);
   };
 
+  onSubmit = eventData => {
+    const { id, title, description, startTime, endTime, date } = eventData;
+    const newEvent = {
+      id,
+      title,
+      description,
+      dateFrom: moment(`${date} ${startTime}`).format(),
+      dateTo: moment(`${date} ${endTime}`).format(),
+    };
+    createEvents(newEvent)
+      .then(() => {
+        this.props.fetchEvents();
+      })
+      .catch(() => {
+        alert(`'Internal Server Error. Can't submit events'`);
+      });
+  };
+
   handleSubmit = e => {
     e.preventDefault();
 
     if (handleValidation(this.state, this.props.events)) {
-      this.props.onSubmit(this.state.fields);
+      this.onSubmit(this.state.fields);
       this.props.onClose();
     } else {
       alert('Event with that time range already exists');
@@ -45,10 +64,7 @@ class CreateEventModal extends Component {
       <div className="modal overlay">
         <div className="modal__content">
           <div className="create-event">
-            <Modal>
-              <button className="create-event__close-btn" onClick={this.props.onClose}>
-                +
-              </button>
+            <Modal onClose={this.props.onClose}>
               <form className="event-form" onSubmit={this.handleSubmit}>
                 <input
                   type="text"
@@ -104,5 +120,6 @@ export default CreateEventModal;
 
 CreateEventModal.propTypes = {
   onClose: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
+  events: PropTypes.array.isRequired,
+  fetchEvents: PropTypes.func.isRequired,
 };
