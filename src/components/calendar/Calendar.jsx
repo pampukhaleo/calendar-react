@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import moment from 'moment';
 import PropTypes from 'prop-types';
 
 import Navigation from '../navigation/Navigation';
 import Week from '../week/Week';
 import Sidebar from '../sidebar/Sidebar';
 import CreateEventModal from '../modal/CreateEventModal';
-import { createEvents, deleteEvent, fetchEvents } from '../../gateway/events';
+import { deleteEvent, fetchEvents } from '../../gateway/events';
 
 import './calendar.scss';
 

@@ -1,28 +1,22 @@
 import React from 'react';
-import moment from 'moment';
 import PropTypes from 'prop-types';
 
 import './week.scss';
 
 import Day from '../day/Day';
 
-const formatYearMonthDayTime = 'YYYY-MM-DDTHH:mm:ssZ';
-
 const Week = ({ weekDates, events, onDelete }) => (
   <div className="calendar__week">
     {weekDates.map(dayStart => {
       const dayEnd = new Date(dayStart.getTime()).setHours(dayStart.getHours() + 24);
-      const convertStartDate = moment(dayStart).format(formatYearMonthDayTime);
-      const convertEndDate = moment(dayEnd).format(formatYearMonthDayTime);
-      // getting all events from the day we will render
       const dayEvents = events.filter(
-        event => event.dateFrom > convertStartDate && event.dateTo < convertEndDate,
+        event => new Date(event.dateFrom) > dayStart && new Date(event.dateTo) < new Date(dayEnd),
       );
 
       return (
         <Day
-          key={convertStartDate}
-          dataDay={convertEndDate}
+          key={dayStart}
+          dataDay={dayStart}
           dayEvents={dayEvents}
           onDelete={onDelete}
         />

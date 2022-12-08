@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment/moment';
 
 import './event.scss';
 
 import Delete from '../delete/Delete';
 
-const Event = ({ height, marginTop, title, time, id, onDelete }) => {
+const Event = ({ onDelete, event }) => {
+  const { id, title, dateFrom, dateTo } = event;
+
   const [isDeletePopupShown, setIsDeletePopupShown] = useState(false);
+
+  const eventStart = `${moment(dateFrom).format('HH')}:${moment(dateFrom).format('mm')}`;
+  const eventEnd = `${moment(dateTo).format('HH')}:${moment(dateTo).format('mm')}`;
+  const height = (moment(dateTo).valueOf() - moment(dateFrom).valueOf()) / (1000 * 60);
+  const marginTop = +moment(dateFrom).format('mm');
 
   const onEventClick = () => {
     setIsDeletePopupShown(!isDeletePopupShown);
@@ -20,7 +28,7 @@ const Event = ({ height, marginTop, title, time, id, onDelete }) => {
   return (
     <div style={eventStyle} className="event" onClick={onEventClick}>
       <div className="event__title">{title}</div>
-      <div className="event__time">{time}</div>
+      <div className="event__time">{`${eventStart} - ${eventEnd}`}</div>
       {isDeletePopupShown && <Delete marginTop={marginTop} deletePopup={onDelete} id={id} />}
     </div>
   );
@@ -29,9 +37,11 @@ const Event = ({ height, marginTop, title, time, id, onDelete }) => {
 export default Event;
 
 Event.propTypes = {
-  height: PropTypes.number.isRequired,
-  marginTop: PropTypes.number.isRequired,
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
   onDelete: PropTypes.func.isRequired,
+  event: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    dateFrom: PropTypes.string,
+    dateTo: PropTypes.string,
+  }),
 };
