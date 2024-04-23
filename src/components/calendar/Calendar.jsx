@@ -40,6 +40,7 @@ class Calendar extends Component {
 
   render() {
     const { weekDates } = this.props;
+
     return (
       <section className="calendar">
         <Navigation weekDates={weekDates} />

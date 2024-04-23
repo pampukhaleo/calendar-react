@@ -11,13 +11,13 @@ const Day = ({ dataDay, dayEvents, onDelete }) => {
   const hours = Array(24)
     .fill()
     .map((val, index) => index);
+
   return (
     <div className="calendar__day" data-day={dataDay}>
       {hours.map(hour => {
-        // getting all events from the day we will render
         const hourEvents = dayEvents.filter(event => {
-          const convertHours = moment(event.dateFrom).hours();
-          return convertHours === hour;
+          const eventStartHour = moment(event.dateFrom).hours();
+          return eventStartHour === hour;
         });
 
         return (
