@@ -1,20 +1,17 @@
-React Calendar Project
+# Project: Google calendar
 
-[REACT Calendar](https://voluble-melba-48e2db.netlify.app/)
+### [Site link](https://voluble-melba-48e2db.netlify.app/)
 
-The tech stack is:
+Layout support  desktop (up-to-1920) version
 
-- HTML5
-- CSS3
-- Javascript
-- REACT
-- Flexbox
-- Sass (Scss)
-- moment
-- Font Awesome
-- PropTypes
-- MockAPI
-- Netlify
-- BEM methodology
+### The tech stack is:
 
-Author Leonid Pampukha
+- [HTML5](https://en.wikipedia.org/wiki/HTML5)
+- [CSS3](https://en.wikipedia.org/wiki/CSS)
+- [Sass (Scss)](https://sass-lang.com/)
+- [BEM methodology](https://en.bem.info/methodology/)
+- [React v17](https://legacy.reactjs.org/)
+
+### Author
+
+- Leonid Pampukha
