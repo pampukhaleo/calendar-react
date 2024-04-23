@@ -13,14 +13,7 @@ const Week = ({ weekDates, events, onDelete }) => (
         event => new Date(event.dateFrom) > dayStart && new Date(event.dateTo) < new Date(dayEnd),
       );
 
-      return (
-        <Day
-          key={dayStart}
-          dataDay={dayStart}
-          dayEvents={dayEvents}
-          onDelete={onDelete}
-        />
-      );
+      return <Day key={dayStart} dataDay={dayStart} dayEvents={dayEvents} onDelete={onDelete} />;
     })}
   </div>
 );
