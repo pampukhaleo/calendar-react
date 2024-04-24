@@ -14,12 +14,14 @@ const Event = ({ onDelete, event }) => {
   const eventStart = `${moment(dateFrom).format('HH')}:${moment(dateFrom).format('mm')}`;
   const eventEnd = `${moment(dateTo).format('HH')}:${moment(dateTo).format('mm')}`;
   const marginTop = +moment(dateFrom).format('mm') + 1;
+  const height = (moment(dateTo).valueOf() - moment(dateFrom).valueOf()) / (1000 * 60);
 
   const onEventClick = () => {
     setIsDeletePopupShown(!isDeletePopupShown);
   };
 
   const eventStyle = {
+    height,
     marginTop,
   };
 
