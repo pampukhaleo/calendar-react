@@ -5,7 +5,6 @@ import Event from '../event/Event';
 
 const Hour = ({ dataHour, hourEvents, onDelete }) => (
   <div className="calendar__time-slot" data-time={dataHour + 1}>
-    {/* if no events in the current hour nothing will render here */}
     {hourEvents.map(event => (
       <Event key={event.id} event={event} onDelete={onDelete} />
     ))}

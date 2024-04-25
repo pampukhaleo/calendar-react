@@ -37,7 +37,7 @@
     padding: 5px 0;
     margin: 8px;
     border: none;
-    border-bottom: 2px solid lightblue;
+    border-bottom: 2px solid #ADD8E6;
     transition: all 200ms ease;
   }
 
@@ -45,25 +45,25 @@
     margin: 8px;
     margin-left: auto;
     border: none;
-    color: #fff;
-    background-color: cornflowerblue;
+    color: #FFFFFF;
+    background-color: #6495ED;
     padding: 8px 26px;
     border-radius: 8px;
     transition: all 500ms ease;
     cursor: pointer;
 
     &:hover{
-      box-shadow: 0 0 15px -2px rgba(0,0,0,0.53)
+      box-shadow: 0 0 15px -2px #00000087
     }
   }
 }
 
 input:focus {
   outline: none;
-  border-bottom: 2px solid blue;
+  border-bottom: 2px solid #0000FF;
 }
 
 textarea:focus {
   outline: none;
-  border-bottom: 2px solid blue;
+  border-bottom: 2px solid #0000FF;
 }

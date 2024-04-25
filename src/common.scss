@@ -1,8 +1,8 @@
 .button {
   height: 40px;
   border-radius: 8px;
-  background-color: white;
-  border: 1px solid #ccc;
+  background-color: #FFFFFF;
+  border: 1px solid #CCCCCC;
   outline: none;
   cursor: pointer;
   font-size: 16px;
@@ -23,16 +23,16 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #cccccc45;
+  background-color: #CCCCCC45;
   z-index: 10;
 }
 
 .popup {
   &__content {
     position: absolute;
-    background: #fff;
+    background: #FFFFFF;
     padding: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #CCCCCC;
     border-radius: 8px;
   }
 }

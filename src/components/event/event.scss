@@ -5,7 +5,7 @@
   z-index: 1;
   border-radius: 8px;
   padding: 8px;
-  color: #768295;
+  color: #768295FF;
   cursor: pointer;
 
   &__title {
@@ -25,7 +25,7 @@
   }
 
   &:hover {
-    color: white;
-    background-color: #08707b;
+    color: #FFFFFF;
+    background-color: #08707B;
   }
 }

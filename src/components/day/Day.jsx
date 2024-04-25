@@ -1,16 +1,13 @@
 import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-
-import './day.scss';
-
 import Hour from '../hour/Hour';
 import RedLine from '../redLine/RedLine';
 
 const Day = ({ dataDay, dayEvents, onDelete }) => {
   const hours = Array(24)
     .fill()
-    .map((val, index) => index);
+    .map((_, index) => index);
 
   return (
     <div className="calendar__day" data-day={dataDay}>

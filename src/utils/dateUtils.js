@@ -1,5 +1,4 @@
 import moment from 'moment';
-import PropTypes from 'prop-types';
 
 export const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 export const months = [
@@ -20,10 +19,7 @@ export const months = [
 export const getWeekStartDate = date => {
   const dateCopy = new Date(date);
   const dayOfWeek = dateCopy.getDay();
-  const difference =
-    dayOfWeek === 0
-      ? -6 // for Sunday
-      : 1 - dayOfWeek;
+  const difference = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
 
   const monday = new Date(dateCopy.setDate(date.getDate() + difference));
   return new Date(monday.getFullYear(), monday.getMonth(), monday.getDate());
@@ -58,7 +54,7 @@ export const getDisplayedMonth = date => {
 export const handleValidation = (data, events) => {
   const { fields } = data;
   let formIsValid = true;
-  // Date
+
   events.forEach(event => {
     const eventDate = moment(event.dateFrom, 'YYYY-MM-DD').format('YYYY-MM-DD');
     const eventStartTime = new Date(event.dateFrom).getTime();
@@ -73,6 +69,7 @@ export const handleValidation = (data, events) => {
   });
   return formIsValid;
 };
+
 export const dayNumberClassName = date => {
   const newDate = new Date();
   if (

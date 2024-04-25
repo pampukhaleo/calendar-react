@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-
 import Navigation from '../navigation/Navigation';
 import Week from '../week/Week';
 import Sidebar from '../sidebar/Sidebar';
@@ -9,58 +8,50 @@ import { deleteEvent, fetchEvents } from '../../gateway/events';
 
 import './calendar.scss';
 
-class Calendar extends Component {
-  state = {
-    events: [],
-  };
+const Calendar = ({ weekDates, onCloseButtonClick, showCreateEventModal }) => {
+  const [events, setEvents] = useState([]);
 
-  componentDidMount() {
-    this.onFetchEvents();
-  }
-
-  onFetchEvents = () => {
+  const onFetchEvents = () => {
     fetchEvents()
       .then(result => {
-        this.setState({
-          events: result,
-        });
+        setEvents(result);
       })
       .catch(() => {
         alert(`'Internal Server Error. Can't display events'`);
       });
   };
 
-  onDelete = e => {
+  useEffect(() => {
+    onFetchEvents();
+  }, []);
+
+  const onDelete = e => {
     deleteEvent(e.target.dataset.id)
-      .then(() => this.onFetchEvents())
+      .then(() => onFetchEvents())
       .catch(() => {
         alert(`'Internal Server Error. Can't delete events'`);
       });
   };
 
-  render() {
-    const { weekDates } = this.props;
-
-    return (
-      <section className="calendar">
-        <Navigation weekDates={weekDates} />
-        <div className="calendar__body">
-          <div className="calendar__week-container">
-            <Sidebar />
-            <Week weekDates={weekDates} events={this.state.events} onDelete={this.onDelete} />
-          </div>
+  return (
+    <section className="calendar">
+      <Navigation weekDates={weekDates} />
+      <div className="calendar__body">
+        <div className="calendar__week-container">
+          <Sidebar />
+          <Week weekDates={weekDates} events={events} onDelete={onDelete} />
         </div>
-        {this.props.showCreateEventModal && (
-          <CreateEventModal
-            onClose={this.props.onCloseButtonClick}
-            events={this.state.events}
-            fetchEvents={this.onFetchEvents}
-          />
-        )}
-      </section>
-    );
-  }
-}
+      </div>
+      {showCreateEventModal && (
+        <CreateEventModal
+          onClose={onCloseButtonClick}
+          events={events}
+          fetchEvents={onFetchEvents}
+        />
+      )}
+    </section>
+  );
+};
 
 export default Calendar;
 

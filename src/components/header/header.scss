@@ -8,16 +8,16 @@
 .create-event-btn {
   padding: 0 16px;
   border-radius: 20px !important;
-  box-shadow: 8px 10px 23px -6px rgba(0,0,0,0.6);
+  box-shadow: 8px 10px 23px -6px #00000099;
 
   &:hover {
-    background-color: azure;
-    box-shadow: 8px 10px 23px 1px rgba(0,0,0,0.6);
+    background-color: #F0FFFF;
+    box-shadow: 8px 10px 23px 1px #00000099;
   }
 
   &__icon {
     margin-right: 8px;
-    background: linear-gradient(to bottom right, rgb(52, 168, 83), rgb(66, 133, 244), rgb(251, 188, 5), rgb(234, 67, 53));
+    background: linear-gradient(to bottom right, #34A853, #4285F4, #FBBC05, #EA4335);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }

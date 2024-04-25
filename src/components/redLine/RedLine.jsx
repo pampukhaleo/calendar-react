@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './redline.scss';
 
 const RedLine = ({ hour, date }) => {
-  const [time, setTime] = useState(Date.now());
+  const [_, setTime] = useState(Date.now());
 
   useEffect(() => {
     const interval = setInterval(() => setTime(Date.now()), 60000);
@@ -22,7 +22,7 @@ const RedLine = ({ hour, date }) => {
       {currentHour === hour &&
       currentDate === new Date(date).getDate() &&
       currentMonth === new Date(date).getMonth() ? (
-        <div style={{ marginTop: currentMinutes }} className="red-line"></div>
+        <div style={{ marginTop: currentMinutes }} className="red-line" />
       ) : null}
     </div>
   );

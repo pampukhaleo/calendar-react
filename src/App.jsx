@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import Header from './components/header/Header.jsx';
 import Calendar from './components/calendar/Calendar.jsx';
 import { getWeekStartDate, generateWeekRange } from './utils/dateUtils.js';
@@ -7,29 +6,11 @@ import { getWeekStartDate, generateWeekRange } from './utils/dateUtils.js';
 import './common.scss';
 
 const App = () => {
-  const [weekStartDate, setWeekStartDate] = useState(new Date());
   const [isEventModalShown, setIsEventModalShown] = useState(false);
+  const [weekStartDate, setWeekStartDate] = useState(new Date());
 
   const handleCreateEventModal = () => {
     setIsEventModalShown(!isEventModalShown);
-  };
-
-  const handleNextWeek = () => {
-    setWeekStartDate(date => {
-      date.setDate(date.getDate() + 7);
-      return new Date(date);
-    });
-  };
-
-  const handlePrevWeek = () => {
-    setWeekStartDate(date => {
-      date.setDate(date.getDate() - 7);
-      return new Date(date);
-    });
-  };
-
-  const handleCurrentWeek = () => {
-    setWeekStartDate(new Date());
   };
 
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
@@ -37,10 +18,8 @@ const App = () => {
   return (
     <>
       <Header
-        onNextWeek={handleNextWeek}
-        onPrevWeek={handlePrevWeek}
-        onCurrentWeek={handleCurrentWeek}
         onCreateButtonClick={handleCreateEventModal}
+        setWeekStartDate={setWeekStartDate}
         weekStartDate={weekStartDate}
       />
       <Calendar
